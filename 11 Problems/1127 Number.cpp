@@ -1,27 +1,29 @@
 #include <cstdio>
-#define N 100
-#define M 10
-#define L long long
-#define INF (L)(1e18)
 
-L dp[N+2][M+2], c[M+2];
-int p[N+2], cnt[M+2];
-L n;
+int n, cs[12];
+char ans[102];
 
 int main() {
-    scanf("%lld", &n);
-    for (int i = 1; i < M; i++)
-        scanf("%lld", c+i);
-    
-    for (int i = 1; i <= N; i++)
-        for (int j = 1; j < M; j++)
-            dp[i][j] = INF;
-    for (int i = 1; i <= N; i++)
-        for (int j = 1; j < M; j++)
-            for (int k = 1; k < M; k++)
-                if (dp[i][j] >= dp[i-1][k] + c[j]) {
-                    dp[i][j] = dp[i-1][k] + c[j];
-                    p[i] = k;
-                }
+    int mn = 1<<30, val;
+    scanf("%d", &n);
+    for (int i = 1; i < 10; i++) {
+        scanf("%d", cs+i);
+        if (mn >= cs[i]) {
+            mn = cs[i];
+            val = i;
+        }
+    }
+    int dig = n / mn;
+    int rm = n - mn * dig;
+    for (int i = 0; i < dig; i++) {
+        for (int j = 9; j >= val; j--) {
+            if (rm >= cs[j] - mn) {
+                rm -= cs[j] - mn;
+                ans[i] = '0' + j;
+                break;
+            }
+        }
+    }
+    printf("%s\n", ans);
     return 0;
 }
