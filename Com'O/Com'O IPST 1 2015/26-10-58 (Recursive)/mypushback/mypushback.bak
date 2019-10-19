@@ -1,0 +1,7 @@
+#lang racket
+(define (mymin lst)
+  (if (null? lst)
+      1e9
+      (let ((x (first lst)) (y (mymin (rest lst))))
+        (if (< x y) x y))))
+        

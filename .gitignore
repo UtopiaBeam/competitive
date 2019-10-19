@@ -1,3 +1,7 @@
 *.exe
 *.o
+*.in
+*.out
+*.sol
+*.txt
 .DS_Store

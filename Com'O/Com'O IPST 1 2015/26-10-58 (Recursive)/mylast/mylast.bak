@@ -1,0 +1,5 @@
+#lang racket
+(define (mypushback lst x)
+  (if (null? lst)
+      (cons (mypushback (rest lst) x))))(define
+        
